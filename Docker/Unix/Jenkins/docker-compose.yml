@@ -1,0 +1,19 @@
+version: "2.3"
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "50000:50000"
+    volumes:
+      - type: volume
+        source: jenkins_data
+        target: /var/jenkins_home
+        volume: 
+          nocopy: true 
+      
+volumes:
+  jenkins_data:
+    external: true

@@ -1,0 +1,17 @@
+version: "2.3"
+services:
+  artifactory:
+    image: docker.bintray.io/jfrog/artifactory-cpp-ce
+    user: root
+    ports:
+      - "8081:8081"
+    volumes:
+      - type: volume
+        source: artifactory_data
+        target: /var/opt/jfrog/artifactory/data/filestore
+        volume: 
+          nocopy: true 
+      
+volumes:
+  artifactory_data:
+    external: true
