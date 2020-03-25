@@ -1,0 +1,10 @@
+********************************************************
+if volumes have not been created yet:
+
+docker volume create dotnetcore_jenkins_slave_data00
+docker volume create dotnetcore_jenkins_nuget_cache
+********************************************************
+
+docker build -t {docker_image} {dockerfile_path}
+
+docker run -d -v dotnetcore_jenkins_nuget_cache:/root/.nuget/packages -v dotnetcore_jenkins_slave_data00:{slave_working_directory}/workspace -v /var/run/docker.sock:/var/run/docker.sock --name {container_name} {docker_image} -jnlpUrl {jnlp_url} -secret {secret} -workDir {slave_working_directory}
